@@ -134,8 +134,7 @@ class CartWidget extends StatelessWidget {
                         Expanded(
                           child: Text(
                             "\$" +
-                                (data[index].price * data[index].card)
-                                    .toString(),
+                                data[index].price.toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 12 * h,

@@ -47,6 +47,11 @@ class _CartScreenState extends State<CartScreen> {
           stream: cardBloc.cardDataBase,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              double price = 0;
+              for (int i = 0; i < snapshot.data!.length; i++) {
+                price +=
+                (snapshot.data![i].price * snapshot.data![i].card);
+              }
               List<ProductListResult> data = snapshot.data!;
               return Column(
                 children: [
@@ -87,7 +92,7 @@ class _CartScreenState extends State<CartScreen> {
                                     ),
                                   ),
                                   Text(
-                                    "\$766.86",
+                                    "\$" + price.toString(),
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12 * h,

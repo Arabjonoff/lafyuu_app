@@ -151,7 +151,7 @@ class ProductWidget extends StatelessWidget {
                       : Container(),
                   const Spacer(),
                   Text(
-                    "\$" + (data.price * data.card).toString(),
+                    "\$" + data.price.toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 12 * h,
