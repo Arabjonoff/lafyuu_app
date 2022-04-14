@@ -201,8 +201,10 @@ class ProductWidget extends StatelessWidget {
                                 height: 31 * h,
                                 width: 31 * h,
                                 child: Center(
-                                    child: SvgPicture.asset(
-                                        "assets/icons/trash.svg")),
+                                  child: SvgPicture.asset(
+                                    "assets/icons/trash.svg",
+                                  ),
+                                ),
                               ),
                             )
                           : Container(),
