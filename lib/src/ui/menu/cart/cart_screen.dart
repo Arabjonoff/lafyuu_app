@@ -20,7 +20,6 @@ class _CartScreenState extends State<CartScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     double w = Utils.getWidth(context);
@@ -54,87 +53,93 @@ class _CartScreenState extends State<CartScreen> {
                   Expanded(
                     child: CartWidget(data: data),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.only(
-                      left: 16 * w,
-                      right: 16 * w,
-                      top: 16 * h,
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColor.gray,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Total Price",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12 * h,
-                              fontFamily: AppColor.fontFamilyPoppins,
-                              height: 18 / 12 * h,
-                              letterSpacing: 0.5 * w,
-                              color: AppColor.dark,
+                  data.isNotEmpty
+                      ? Column(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.only(
+                                left: 16 * w,
+                                right: 16 * w,
+                                top: 16 * h,
+                              ),
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColor.gray,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Total Price",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12 * h,
+                                        fontFamily: AppColor.fontFamilyPoppins,
+                                        height: 18 / 12 * h,
+                                        letterSpacing: 0.5 * w,
+                                        color: AppColor.dark,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "\$766.86",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12 * h,
+                                      fontFamily: AppColor.fontFamilyPoppins,
+                                      height: 18 / 12 * h,
+                                      letterSpacing: 0.5 * w,
+                                      color: AppColor.blue,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
-                        Text(
-                          "\$766.86",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12 * h,
-                            fontFamily: AppColor.fontFamilyPoppins,
-                            height: 18 / 12 * h,
-                            letterSpacing: 0.5 * w,
-                            color: AppColor.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 57 * h,
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.only(
-                      left: 16 * w,
-                      right: 16 * w,
-                      bottom: 16 * h,
-                      top: 16 * h,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColor.blue,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: const Offset(
-                            0,
-                            10,
-                          ),
-                          blurRadius: 30,
-                          color: AppColor.blue.withOpacity(0.24),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Check Out",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14 * h,
-                          fontFamily: AppColor.fontFamilyPoppins,
-                          height: 25 / 14 * h,
-                          letterSpacing: 0.5 * w,
-                          color: AppColor.white,
-                        ),
-                      ),
-                    ),
-                  ),
+                            Container(
+                              height: 57 * h,
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.only(
+                                left: 16 * w,
+                                right: 16 * w,
+                                bottom: 16 * h,
+                                top: 16 * h,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: AppColor.blue,
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: const Offset(
+                                      0,
+                                      10,
+                                    ),
+                                    blurRadius: 30,
+                                    color: AppColor.blue.withOpacity(0.24),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Check Out",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14 * h,
+                                    fontFamily: AppColor.fontFamilyPoppins,
+                                    height: 25 / 14 * h,
+                                    letterSpacing: 0.5 * w,
+                                    color: AppColor.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(),
                 ],
               );
             }
