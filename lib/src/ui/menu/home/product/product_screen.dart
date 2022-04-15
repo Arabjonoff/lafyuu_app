@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -205,187 +206,203 @@ class _ProductScreenState extends State<ProductScreen> {
                             SizedBox(
                               height: 24 * h,
                             ),
-                            Text(
-                              "Select Size",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14 * h,
-                                fontFamily: AppColor.fontFamilyPoppins,
-                                height: 21 / 14 * h,
-                                letterSpacing: 0.5 * w,
-                                color: AppColor.dark,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 84 * h,
-                              child: ListView.builder(
-                                  itemCount: productItemData.size.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      width: 48 * h,
-                                      margin: EdgeInsets.only(
-                                        right: 16 * w,
-                                      ),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            if (productItemData
-                                                    .size[index].selected ==
-                                                index) {
-                                              productItemData
-                                                  .size[index].selected = -1;
-                                            } else {
-                                              for (int i = 0;
-                                                  i <
-                                                      productItemData
-                                                          .size.length;
-                                                  i++) {
-                                                productItemData
-                                                    .size[i].selected = -1;
-                                              }
-                                              productItemData
-                                                  .size[index].selected = index;
-                                            }
-                                            setState(() {});
-                                          },
-                                          child: Container(
-                                            height: 48 * h,
+                            productItemData.size.isEmpty
+                                ? Container()
+                                : Text(
+                                    "Select Size",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14 * h,
+                                      fontFamily: AppColor.fontFamilyPoppins,
+                                      height: 21 / 14 * h,
+                                      letterSpacing: 0.5 * w,
+                                      color: AppColor.dark,
+                                    ),
+                                  ),
+                            productItemData.size.isEmpty
+                                ? Container()
+                                : SizedBox(
+                                    height: 84 * h,
+                                    child: ListView.builder(
+                                        itemCount: productItemData.size.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) {
+                                          return Container(
                                             width: 48 * h,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(24),
-                                              border: Border.all(
-                                                color: index ==
-                                                        productItemData
-                                                            .size[index]
-                                                            .selected
-                                                    ? AppColor.blue
-                                                    : AppColor.gray,
-                                              ),
+                                            margin: EdgeInsets.only(
+                                              right: 16 * w,
                                             ),
                                             child: Center(
-                                              child: Text(
-                                                productItemData
-                                                    .size[index].size,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 14 * h,
-                                                  fontFamily: AppColor
-                                                      .fontFamilyPoppins,
-                                                  height: 21 / 14 * h,
-                                                  letterSpacing: 0.5 * w,
-                                                  color: AppColor.dark,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  if (productItemData
+                                                          .size[index]
+                                                          .selected ==
+                                                      index) {
+                                                    productItemData.size[index]
+                                                        .selected = -1;
+                                                  } else {
+                                                    for (int i = 0;
+                                                        i <
+                                                            productItemData
+                                                                .size.length;
+                                                        i++) {
+                                                      productItemData.size[i]
+                                                          .selected = -1;
+                                                    }
+                                                    productItemData.size[index]
+                                                        .selected = index;
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child: Container(
+                                                  height: 48 * h,
+                                                  width: 48 * h,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24),
+                                                    border: Border.all(
+                                                      color: index ==
+                                                              productItemData
+                                                                  .size[index]
+                                                                  .selected
+                                                          ? AppColor.blue
+                                                          : AppColor.gray,
+                                                    ),
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      productItemData
+                                                          .size[index].size,
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 14 * h,
+                                                        fontFamily: AppColor
+                                                            .fontFamilyPoppins,
+                                                        height: 21 / 14 * h,
+                                                        letterSpacing: 0.5 * w,
+                                                        color: AppColor.dark,
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                            ),
-                            Text(
-                              "Select Color",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14 * h,
-                                fontFamily: AppColor.fontFamilyPoppins,
-                                height: 21 / 14 * h,
-                                letterSpacing: 0.5 * w,
-                                color: AppColor.dark,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 84 * h,
-                              child: ListView.builder(
-                                  itemCount: productItemData.color.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      width: 48 * h,
-                                      margin: EdgeInsets.only(
-                                        right: 16 * w,
-                                      ),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            if (productItemData
-                                                .color[index].selected) {
-                                              productItemData.color[index]
-                                                  .selected = false;
-                                            } else {
-                                              for (int i = 0;
-                                                  i <
-                                                      productItemData
-                                                          .color.length;
-                                                  i++) {
-                                                productItemData
-                                                    .color[i].selected = false;
-                                              }
-                                              productItemData
-                                                  .color[index].selected = true;
-                                            }
-                                            setState(() {});
-                                          },
-                                          child: Container(
-                                            height: 48 * h,
+                                          );
+                                        }),
+                                  ),
+                            productItemData.color.isEmpty
+                                ? Container()
+                                : Text(
+                                    "Select Color",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14 * h,
+                                      fontFamily: AppColor.fontFamilyPoppins,
+                                      height: 21 / 14 * h,
+                                      letterSpacing: 0.5 * w,
+                                      color: AppColor.dark,
+                                    ),
+                                  ),
+                            productItemData.color.isEmpty
+                                ? Container()
+                                : SizedBox(
+                                    height: 84 * h,
+                                    child: ListView.builder(
+                                        itemCount: productItemData.color.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) {
+                                          return Container(
                                             width: 48 * h,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(24),
-                                              border: Border.all(
-                                                color: productItemData
-                                                            .color[index].color
-                                                            .toUpperCase() ==
-                                                        "FFFFFF"
-                                                    ? AppColor.grey
-                                                    : HexColor.fromHex(
-                                                        productItemData
-                                                            .color[index].color,
-                                                      ),
-                                              ),
-                                              color: HexColor.fromHex(
-                                                productItemData
-                                                    .color[index].color,
-                                              ),
+                                            margin: EdgeInsets.only(
+                                              right: 16 * w,
                                             ),
                                             child: Center(
-                                              child: Container(
-                                                width: 16 * h,
-                                                height: 16 * h,
-                                                decoration: BoxDecoration(
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  if (productItemData
+                                                      .color[index].selected) {
+                                                    productItemData.color[index]
+                                                        .selected = false;
+                                                  } else {
+                                                    for (int i = 0;
+                                                        i <
+                                                            productItemData
+                                                                .color.length;
+                                                        i++) {
+                                                      productItemData.color[i]
+                                                          .selected = false;
+                                                    }
+                                                    productItemData.color[index]
+                                                        .selected = true;
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child: Container(
+                                                  height: 48 * h,
+                                                  width: 48 * h,
+                                                  decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
-                                                    color: productItemData
-                                                            .color[index]
-                                                            .selected
-                                                        ? productItemData
-                                                                    .color[
-                                                                        index]
-                                                                    .color
-                                                                    .toUpperCase() ==
-                                                                "FFFFFF"
-                                                            ? Colors.black
-                                                            : AppColor.white
-                                                        : productItemData
-                                                                    .color[
-                                                                        index]
-                                                                    .color
-                                                                    .toUpperCase() ==
-                                                                "FFFFFF"
-                                                            ? Colors.transparent
-                                                            : Colors
-                                                                .transparent),
+                                                            24),
+                                                    border: Border.all(
+                                                      color: productItemData
+                                                                  .color[index]
+                                                                  .color
+                                                                  .toUpperCase() ==
+                                                              "FFFFFF"
+                                                          ? AppColor.grey
+                                                          : HexColor.fromHex(
+                                                              productItemData
+                                                                  .color[index]
+                                                                  .color,
+                                                            ),
+                                                    ),
+                                                    color: HexColor.fromHex(
+                                                      productItemData
+                                                          .color[index].color,
+                                                    ),
+                                                  ),
+                                                  child: Center(
+                                                    child: Container(
+                                                      width: 16 * h,
+                                                      height: 16 * h,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                        color: productItemData
+                                                                .color[index]
+                                                                .selected
+                                                            ? productItemData
+                                                                        .color[
+                                                                            index]
+                                                                        .color
+                                                                        .toUpperCase() ==
+                                                                    "FFFFFF"
+                                                                ? Colors.black
+                                                                : AppColor.white
+                                                            : productItemData
+                                                                        .color[
+                                                                            index]
+                                                                        .color
+                                                                        .toUpperCase() ==
+                                                                    "FFFFFF"
+                                                                ? Colors
+                                                                    .transparent
+                                                                : Colors
+                                                                    .transparent,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                            ),
+                                          );
+                                        }),
+                                  ),
                             productItemData.specification.isEmpty
                                 ? Container()
                                 : Text(
@@ -401,45 +418,152 @@ class _ProductScreenState extends State<ProductScreen> {
                                   ),
                             productItemData.specification.isEmpty
                                 ? Container()
-                                : SizedBox(
-                                    height: 12 * h,
+                                : ListView.builder(
+                                    padding: EdgeInsets.only(
+                                      top: 12 * h,
+                                      bottom: 16 * h,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Shown:",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12 * h,
+                                                    fontFamily: AppColor
+                                                        .fontFamilyPoppins,
+                                                    height: 22 / 12 * h,
+                                                    letterSpacing: 0.5 * w,
+                                                    color: AppColor.dark,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                productItemData
+                                                    .specification[index].shown,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12 * h,
+                                                  fontFamily: AppColor
+                                                      .fontFamilyPoppins,
+                                                  height: 22 / 12 * h,
+                                                  letterSpacing: 0.5 * w,
+                                                  color: AppColor.grey,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 16 * w,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 16 * h,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Style:",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12 * h,
+                                                    fontFamily: AppColor
+                                                        .fontFamilyPoppins,
+                                                    height: 22 / 12 * h,
+                                                    letterSpacing: 0.5 * w,
+                                                    color: AppColor.dark,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                productItemData
+                                                    .specification[index].style,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12 * h,
+                                                  fontFamily: AppColor
+                                                      .fontFamilyPoppins,
+                                                  height: 22 / 12 * h,
+                                                  letterSpacing: 0.5 * w,
+                                                  color: AppColor.grey,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 16 * w,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 16 * h,
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                              right: 16 * w,
+                                            ),
+                                            child: Text(
+                                              productItemData
+                                                  .specification[index]
+                                                  .textmodels,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12 * h,
+                                                fontFamily:
+                                                    AppColor.fontFamilyPoppins,
+                                                height: 22 / 12 * h,
+                                                letterSpacing: 0.5 * w,
+                                                color: AppColor.grey,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                    itemCount:
+                                        productItemData.specification.length,
                                   ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                            productItemData.reviewAvg.toString().isEmpty
+                                ? const Text("")
+                                : Container(
+                                    margin: EdgeInsets.only(
+                                      bottom: 8 * h,
+                                    ),
+                                    child: Row(
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Shown:",
+                                            "Review Product",
                                             style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12 * h,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 14 * h,
                                               fontFamily:
                                                   AppColor.fontFamilyPoppins,
-                                              height: 22 / 12 * h,
+                                              height: 21 / 14 * h,
                                               letterSpacing: 0.5 * w,
                                               color: AppColor.dark,
                                             ),
                                           ),
                                         ),
                                         Text(
-                                          productItemData
-                                              .specification[index].shown,
+                                          "See More",
                                           style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12 * h,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 14 * h,
                                             fontFamily:
                                                 AppColor.fontFamilyPoppins,
-                                            height: 22 / 12 * h,
+                                            height: 21 / 14 * h,
                                             letterSpacing: 0.5 * w,
-                                            color: AppColor.grey,
+                                            color: AppColor.blue,
                                           ),
                                         ),
                                         SizedBox(
@@ -447,147 +571,55 @@ class _ProductScreenState extends State<ProductScreen> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
-                                      height: 16 * h,
+                                  ),
+                            productItemData.reviewAvg.toString().isEmpty
+                                ? Container()
+                                : Container(
+                                    margin: EdgeInsets.only(
+                                      bottom: 16 * h,
                                     ),
-                                    Row(
+                                    child: Row(
                                       children: [
-                                        Expanded(
-                                          child: Text(
-                                            "Style:",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12 * h,
-                                              fontFamily:
-                                                  AppColor.fontFamilyPoppins,
-                                              height: 22 / 12 * h,
-                                              letterSpacing: 0.5 * w,
-                                              color: AppColor.dark,
-                                            ),
-                                          ),
+                                        StarWidget(
+                                          reviewAvg: productItemData.reviewAvg,
+                                          size: 16 * h,
+                                        ),
+                                        SizedBox(
+                                          width: 8 * w,
                                         ),
                                         Text(
-                                          productItemData
-                                              .specification[index].style,
+                                          productItemData.reviewAvg.toString(),
                                           style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12 * h,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10 * h,
                                             fontFamily:
                                                 AppColor.fontFamilyPoppins,
-                                            height: 22 / 12 * h,
-                                            letterSpacing: 0.5 * w,
+                                            height: 15 / 10 * h,
+                                            letterSpacing: 0.5,
                                             color: AppColor.grey,
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 16 * w,
+                                          width: 3 * w,
+                                        ),
+                                        Text(
+                                          "(" +
+                                              productItemData.reviewCount
+                                                  .toString() +
+                                              " Review)",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 10 * h,
+                                            fontFamily:
+                                                AppColor.fontFamilyPoppins,
+                                            height: 15 / 10 * h,
+                                            letterSpacing: 0.5,
+                                            color: AppColor.grey,
+                                          ),
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
-                                      height: 16 * h,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                        right: 16 * w,
-                                      ),
-                                      child: Text(
-                                        productItemData
-                                            .specification[index].textmodels,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12 * h,
-                                          fontFamily:
-                                              AppColor.fontFamilyPoppins,
-                                          height: 22 / 12 * h,
-                                          letterSpacing: 0.5 * w,
-                                          color: AppColor.grey,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                              itemCount: productItemData.specification.length,
-                            ),
-                            SizedBox(
-                              height: 24 * h,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Review Product",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14 * h,
-                                      fontFamily: AppColor.fontFamilyPoppins,
-                                      height: 21 / 14 * h,
-                                      letterSpacing: 0.5 * w,
-                                      color: AppColor.dark,
-                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "See More",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14 * h,
-                                    fontFamily: AppColor.fontFamilyPoppins,
-                                    height: 21 / 14 * h,
-                                    letterSpacing: 0.5 * w,
-                                    color: AppColor.blue,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16 * w,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8 * h,
-                            ),
-                            Row(
-                              children: [
-                                StarWidget(
-                                  reviewAvg: productItemData.reviewAvg,
-                                  size: 16 * h,
-                                ),
-                                SizedBox(
-                                  width: 8 * w,
-                                ),
-                                Text(
-                                  productItemData.reviewAvg.toString(),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 10 * h,
-                                    fontFamily: AppColor.fontFamilyPoppins,
-                                    height: 15 / 10 * h,
-                                    letterSpacing: 0.5,
-                                    color: AppColor.grey,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 3 * w,
-                                ),
-                                Text(
-                                  "(" +
-                                      productItemData.reviewCount.toString() +
-                                      " Review)",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10 * h,
-                                    fontFamily: AppColor.fontFamilyPoppins,
-                                    height: 15 / 10 * h,
-                                    letterSpacing: 0.5,
-                                    color: AppColor.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 16 * h,
-                            ),
                             productItemData.review.user.firstName == "" &&
                                     productItemData.review.user.lastName == ""
                                 ? Container()
@@ -619,6 +651,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                             width: 16 * w,
                                           ),
                                           Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 productItemData
@@ -663,119 +697,223 @@ class _ProductScreenState extends State<ProductScreen> {
                                       SizedBox(
                                         height: 16 * h,
                                       ),
-                                      SizedBox(
-                                        height: 72 * h,
-                                        child: ListView.builder(
-                                            itemCount: productItemData
-                                                .review.images.length,
-                                            scrollDirection: Axis.horizontal,
-                                            itemBuilder: (context, index) {
-                                              return Container(
-                                                width: 72 * h,
-                                                margin: EdgeInsets.only(
-                                                  right: 12 * w,
-                                                ),
-                                                child: Container(
-                                                  height: 72 * h,
-                                                  width: 72 * h,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
+                                      productItemData.review.images.isEmpty
+                                          ? Container()
+                                          : Container(
+                                              height: 72 * h,
+                                              margin: EdgeInsets.only(
+                                                bottom: 16 * h,
+                                              ),
+                                              child: ListView.builder(
+                                                  itemCount: productItemData
+                                                      .review.images.length,
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Container(
+                                                      width: 72 * h,
+                                                      margin: EdgeInsets.only(
+                                                        right: 12 * w,
+                                                      ),
+                                                      child: Container(
+                                                        height: 72 * h,
+                                                        width: 72 * h,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        ),
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl:
+                                                                productItemData
+                                                                    .review
+                                                                    .images[
+                                                                        index]
+                                                                    .image,
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                const CircularProgressIndicator
+                                                                    .adaptive(),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                            ),
+                                      productItemData.review.date
+                                              .toString()
+                                              .isEmpty
+                                          ? const Text("")
+                                          : Container(
+                                              margin: EdgeInsets.only(
+                                                bottom: 23 * h,
+                                              ),
+                                              child: Text(
+                                                  DateFormat('yyyy.dd.MMMM')
+                                                      .format(
+                                                productItemData.review.date,
+                                              )
+                                                  // Utils.getDateFormat(productItemData.review.date),
                                                   ),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: productItemData
-                                                          .review
-                                                          .images[index]
-                                                          .image,
-                                                      placeholder: (context,
-                                                              url) =>
-                                                          const CircularProgressIndicator
-                                                              .adaptive(),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          const Icon(
-                                                              Icons.error),
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        height: 16 * h,
-                                      ),
-                                      Text(DateFormat('yyyy.dd.MMMM').format(
-                                              productItemData.review.date)
-                                          // Utils.getDateFormat(productItemData.review.date),
-                                          ),
-                                      SizedBox(
-                                        height: 23 * h,
-                                      ),
+                                            ),
                                     ],
                                   ),
-                            Text(
-                              "You Might Also Like",
+                            productItemData.products.isEmpty
+                                ? Container()
+                                : Text(
+                                    "You Might Also Like",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14 * h,
+                                      fontFamily: AppColor.fontFamilyPoppins,
+                                      height: 21 / 14 * h,
+                                      letterSpacing: 0.5 * w,
+                                      color: AppColor.dark,
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      ),
+                      productItemData.products.isEmpty
+                          ? Container()
+                          : ProductListItemWidget(
+                              type: 4,
+                              results: productItemData.products,
+                            ),
+                    ],
+                  ),
+                ),
+                productItemData.cardCount == 0
+                    ? GestureDetector(
+                        onTap: () {
+                          productBloc.updateCard(productItemData, false);
+                        },
+                        child: Container(
+                          height: 56 * h,
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.only(
+                            left: 16 * w,
+                            right: 16 * w,
+                            bottom: 16 * h,
+                          ),
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                offset: const Offset(
+                                  0,
+                                  10,
+                                ),
+                                color: AppColor.blue.withOpacity(0.24),
+                                blurRadius: 30,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(5),
+                            color: AppColor.blue,
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Add To Cart",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14 * h,
                                 fontFamily: AppColor.fontFamilyPoppins,
-                                height: 21 / 14 * h,
+                                height: 25 / 14 * h,
                                 letterSpacing: 0.5 * w,
-                                color: AppColor.dark,
+                                color: AppColor.white,
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      ProductListItemWidget(
-                        type: 4,
-                        results: productItemData.products,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 57 * h,
-                  width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.only(
-                    left: 16 * w,
-                    right: 16 * w,
-                    bottom: 16 * h,
-                  ),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        offset: const Offset(
-                          0,
-                          10,
-                        ),
-                        color: AppColor.blue.withOpacity(0.24),
-                        blurRadius: 30,
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(5),
-                    color: AppColor.blue,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Add To Cart",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14 * h,
-                        fontFamily: AppColor.fontFamilyPoppins,
-                        height: 25 / 14 * h,
-                        letterSpacing: 0.5 * w,
-                        color: AppColor.white,
-                      ),
-                    ),
-                  ),
-                ),
+                      )
+                    : Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              productBloc.updateCard(productItemData, true);
+                            },
+                            child: Container(
+                              height: 56 * h,
+                              width: 56 * h,
+                              margin: EdgeInsets.only(
+                                top: 8 * h,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "-",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12 * h,
+                                    fontFamily: AppColor.fontFamilyPoppins,
+                                    letterSpacing: 0.5 * w,
+                                    height: 25 / 12 * h,
+                                    color: AppColor.white,
+                                  ),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: AppColor.blue,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                productItemData.cardCount.toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 18 * h,
+                                  fontFamily: AppColor.fontFamilyPoppins,
+                                  letterSpacing: 0.5 * w,
+                                  color: AppColor.dark,
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              productBloc.updateCard(productItemData, false);
+                            },
+                            child: Container(
+                              height: 56 * h,
+                              width: 56 * h,
+                              margin: EdgeInsets.only(
+                                top: 8 * h,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "+",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12 * h,
+                                    fontFamily: AppColor.fontFamilyPoppins,
+                                    letterSpacing: 0.5 * w,
+                                    height: 25 / 12 * h,
+                                    color: AppColor.white,
+                                  ),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: AppColor.blue,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
               ],
             ),
           );

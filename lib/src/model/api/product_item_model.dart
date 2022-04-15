@@ -16,6 +16,7 @@ class ProductItemModel {
     required this.products,
     required this.category,
     this.isFav = false,
+    this.cardCount = 0,
   });
 
   int id;
@@ -32,6 +33,7 @@ class ProductItemModel {
   List<ProductListResult> products;
   String category;
   bool isFav;
+  int cardCount;
 
   factory ProductItemModel.fromJson(Map<String, dynamic> json) =>
       ProductItemModel(
