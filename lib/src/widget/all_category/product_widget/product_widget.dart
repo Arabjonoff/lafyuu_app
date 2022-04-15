@@ -195,7 +195,62 @@ class ProductWidget extends StatelessWidget {
                       trash
                           ? GestureDetector(
                               onTap: () {
-                                homeAllBloc.updateFav(data, type);
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return CupertinoAlertDialog(
+                                        title: const Text("Delete"),
+                                        content:
+                                            const Text("Are you delete now?"),
+                                        actions: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              homeAllBloc.updateFav(data, type);
+                                              Navigator.pop(context);
+                                            },
+                                            child: Container(
+                                              height: 32,
+                                              color: Colors.transparent,
+                                              child: Center(
+                                                child: Text(
+                                                  "Yes",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 14 * h,
+                                                    fontFamily:
+                                                        AppColor.fontFamily,
+                                                    decoration:
+                                                        TextDecoration.none,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Container(
+                                              height: 32,
+                                              color: Colors.transparent,
+                                              child: const Center(
+                                                child: Text(
+                                                  "No",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 14,
+                                                    fontFamily:
+                                                        AppColor.fontFamily,
+                                                    decoration:
+                                                        TextDecoration.none,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    });
                               },
                               child: SizedBox(
                                 height: 31 * h,

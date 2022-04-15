@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/bloc/card/card_bloc.dart';
 import 'package:lafyuu/src/model/api/product_list_model.dart';
+import 'package:lafyuu/src/ui/menu/main_screen.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/cart/cart_widget.dart';
 import 'package:lafyuu/src/widget/shimmer_widget/cart_shimmer/cart_screen_shimmer.dart';
+import 'package:page_transition/page_transition.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -61,6 +63,40 @@ class _CartScreenState extends State<CartScreen> {
                             children: [
                               const Spacer(),
                               Image.asset("assets/images/no_product.png"),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: const MainScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                    left: 18 * w,
+                                    right: 18 * w,
+                                    bottom: 14 * h,
+                                    top: 14 * h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: AppColor.gray,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    "Go to Shopping",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14 * h,
+                                        fontFamily: AppColor.fontFamilyPoppins,
+                                        letterSpacing: 0.5 * w,
+                                        color: AppColor.dark),
+                                  ),
+                                ),
+                              ),
                               const Spacer(),
                             ],
                           ),
