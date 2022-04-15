@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
@@ -107,7 +108,63 @@ class CartWidget extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              cardBloc.delete(data[index].id,true);
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return CupertinoAlertDialog(
+                                      title: const Text("Delete"),
+                                      content:
+                                          const Text("Are you delete now?"),
+                                      actions: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            cardBloc.delete(
+                                                data[index].id, true);
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            height: 32,
+                                            color: Colors.transparent,
+                                            child: Center(
+                                              child: Text(
+                                                "Yes",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14 * h,
+                                                  fontFamily:
+                                                      AppColor.fontFamily,
+                                                  decoration:
+                                                      TextDecoration.none,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            height: 32,
+                                            color: Colors.transparent,
+                                            child: const Center(
+                                              child: Text(
+                                                "No",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  fontFamily:
+                                                      AppColor.fontFamily,
+                                                  decoration:
+                                                      TextDecoration.none,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  });
                             },
                             child: SizedBox(
                               height: 32 * h,
@@ -133,8 +190,7 @@ class CartWidget extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "\$" +
-                                data[index].price.toString(),
+                            "\$" + data[index].price.toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 12 * h,

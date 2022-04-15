@@ -49,14 +49,21 @@ class _CartScreenState extends State<CartScreen> {
             if (snapshot.hasData) {
               double price = 0;
               for (int i = 0; i < snapshot.data!.length; i++) {
-                price +=
-                (snapshot.data![i].price * snapshot.data![i].card);
+                price += (snapshot.data![i].price * snapshot.data![i].card);
               }
               List<ProductListResult> data = snapshot.data!;
               return Column(
                 children: [
                   Expanded(
-                    child: CartWidget(data: data),
+                    child: data.isNotEmpty
+                        ? CartWidget(data: data)
+                        : Column(
+                            children: [
+                              Spacer(),
+                              Image.asset("assets/images/no_product.png"),
+                              Spacer(),
+                            ],
+                          ),
                   ),
                   data.isNotEmpty
                       ? Column(
