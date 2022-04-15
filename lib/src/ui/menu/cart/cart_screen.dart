@@ -59,9 +59,9 @@ class _CartScreenState extends State<CartScreen> {
                         ? CartWidget(data: data)
                         : Column(
                             children: [
-                              Spacer(),
+                              const Spacer(),
                               Image.asset("assets/images/no_product.png"),
-                              Spacer(),
+                              const Spacer(),
                             ],
                           ),
                   ),
