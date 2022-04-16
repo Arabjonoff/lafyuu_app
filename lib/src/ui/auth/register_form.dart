@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
+import 'package:lafyuu/src/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterFrom extends StatefulWidget {
@@ -25,361 +26,62 @@ class _RegisterFromState extends State<RegisterFrom> {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
+    double h = Utils.getHeight(context);
+    double w = Utils.getWidth(context);
+    double we = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: ListView(
-        padding: EdgeInsets.zero,
+      backgroundColor: AppColor.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0 * h),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: AppColor.white,
+        ),
+      ),
+      body: Column(
         children: [
-          const SizedBox(
-            height: 112,
-          ),
-          Column(
-            children: [
-              Container(
-                width: 72,
-                height: 72,
-                decoration: BoxDecoration(
-                  color: Color(0xFF40BFFF),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Center(
-                  child: SvgPicture.asset("assets/icons/vector.svg"),
+          Center(
+            child: Container(
+              height: 72 * h,
+              width: 72 * h,
+              margin: EdgeInsets.only(
+                top: 155 * h,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: AppColor.blue,
+              ),
+              child: Center(
+                child: SvgPicture.asset(
+                  "assets/icons/vector.svg",
+                  height: 32 * h,
+                  width: 32 * h,
                 ),
               ),
-            ],
+            ),
           ),
           SizedBox(
-            height: 16,
+            height: 8 * h,
           ),
           Center(
             child: Text(
               "Welcome to Lafyuu",
               style: TextStyle(
-                fontFamily: AppColor.fontFamilyPoppins,
-                fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF223263),
-                height: 1.5,
-                letterSpacing: 0.5,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Center(
-            child: Text(
-              "Sign in to continue",
-              style: TextStyle(
+                fontSize: 16 * h,
                 fontFamily: AppColor.fontFamilyPoppins,
-                fontWeight: FontWeight.w400,
-                fontSize: 12,
-                letterSpacing: 0.5,
-                height: 1.8,
-                color: Color(0xFF9098B1),
+                height: 24 / 16 * h,
+                letterSpacing: 0.5 * w,
+                color: AppColor.dark,
               ),
             ),
           ),
-          Container(
-            width: w,
-            height: 48,
-            margin: EdgeInsets.only(
-              top: 28,
-              left: 16,
-              right: 16,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(
-                color: Color(0xFFEBF0FF),
-              ),
-            ),
-            child: Row(
+          Expanded(
+            child: ListView(
               children: [
-                SizedBox(
-                  width: 16,
-                ),
-                SvgPicture.asset("assets/icons/user.svg"),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    style: TextStyle(
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 0.5,
-                      height: 1.8,
-                      color: Color(0xFF9098B1),
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Full Name",
-                    ),
-                  ),
-                ),
+
               ],
             ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(
-            width: w,
-            height: 48,
-            margin: EdgeInsets.only(
-              left: 16,
-              right: 16,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(
-                color: Color(0xFFEBF0FF),
-              ),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 16,
-                ),
-                SvgPicture.asset("assets/icons/message.svg"),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: _controller1,
-                    style: TextStyle(
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      letterSpacing: 0.5,
-                      height: 1.8,
-                      color: Color(0xFF9098B1),
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Your Email",
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(
-            width: w,
-            height: 48,
-            margin: EdgeInsets.only(
-              left: 16,
-              right: 16,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(
-                color: Color(0xFFEBF0FF),
-              ),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 16,
-                ),
-                SvgPicture.asset("assets/icons/password.svg"),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: _controller2,
-                    obscureText: isHiddenPassword,
-                    style: TextStyle(
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      letterSpacing: 0.5,
-                      height: 1.8,
-                      color: Color(0xFF9098B1),
-                    ),
-                    decoration: InputDecoration(
-                      counterText: "",
-                      border: InputBorder.none,
-                      hintText: "Password",
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: _togglePasswordView,
-                  child: Container(
-                    width: 24,
-                    height: 24,
-                    margin: EdgeInsets.only(
-                      right: 25,
-                    ),
-                    child: isHiddenPassword
-                        ? SvgPicture.asset("assets/icons/eye.svg")
-                        : SvgPicture.asset("assets/icons/eye-off.svg"),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Container(
-            width: w,
-            height: 48,
-            margin: EdgeInsets.only(
-              left: 16,
-              right: 16,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(
-                color: Color(0xFFEBF0FF),
-              ),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 16,
-                ),
-                SvgPicture.asset("assets/icons/password.svg"),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: _controller3,
-                    obscureText: isHiddenPassword1,
-                    style: TextStyle(
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      letterSpacing: 0.5,
-                      height: 1.8,
-                      color: Color(0xFF9098B1),
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Password Again",
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: _togglePasswordView1,
-                  child: Container(
-                    width: 24,
-                    height: 24,
-                    margin: EdgeInsets.only(
-                      right: 25,
-                    ),
-                    child: isHiddenPassword1
-                        ? SvgPicture.asset("assets/icons/eye.svg")
-                        : SvgPicture.asset("assets/icons/eye-off.svg"),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              if (_controller.text.length > 0 &&
-                  _controller1.text.length > 0 &&
-                  _controller2.text.length > 0 &&
-                  _controller3.text.length > 0) {
-                _saveData(
-                  _controller.text,
-                  _controller1.text,
-                  _controller2.text,
-                  _controller3.text,
-                );
-              }
-            },
-            child: Container(
-              width: w,
-              height: 57,
-              margin: EdgeInsets.only(
-                top: 16,
-                left: 16,
-                right: 16,
-              ),
-              decoration: BoxDecoration(
-                color: Color(0xFF40BFFF),
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(
-                      0,
-                      10,
-                    ),
-                    spreadRadius: 0,
-                    blurRadius: 30,
-                    color: Color(0xFF40BFFF).withOpacity(0.24),
-                  ),
-                ],
-              ),
-              child: Expanded(
-                child: Center(
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.5,
-                      height: 1.8,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 24,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "have a account? ",
-                style: TextStyle(
-                  fontFamily: AppColor.fontFamilyPoppins,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12,
-                  letterSpacing: 0.5,
-                  height: 1.5,
-                  color: Color(0xFF9098B1),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  "Sign In",
-                  style: TextStyle(
-                    fontFamily: AppColor.fontFamilyPoppins,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 12,
-                    letterSpacing: 0.5,
-                    height: 1.5,
-                    color: Color(0xFF40BFFF),
-                  ),
-                ),
-              ),
-            ],
           ),
         ],
       ),

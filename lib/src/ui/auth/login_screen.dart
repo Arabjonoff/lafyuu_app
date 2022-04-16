@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 72 * h,
               width: 72 * h,
               margin: EdgeInsets.only(
-                top: 132 * h,
+                top: 112 * h,
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
@@ -275,6 +275,143 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+                ),
+                Container(
+                  width: we,
+                  height: 57 * h,
+                  margin: EdgeInsets.only(
+                    top: 16 * h,
+                    left: 16 * w,
+                    right: 16 * w,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: AppColor.neutralLight,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 16 * w,
+                      ),
+                      Image.asset(
+                        "assets/images/google.png",
+                        height: 24 * h,
+                        width: 24 * h,
+                      ),
+                      const Spacer(),
+                      Center(
+                        child: Text(
+                          "Login with Google",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 25 / 14 * h,
+                            letterSpacing: 0.5 * w,
+                            color: AppColor.grey,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                        width: 30 * w,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: we,
+                  height: 57 * h,
+                  margin: EdgeInsets.only(
+                    top: 8 * h,
+                    left: 16 * w,
+                    right: 16 * w,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: AppColor.neutralLight,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 16 * w,
+                      ),
+                      Image.asset(
+                        "assets/images/facebook.png",
+                        height: 24 * h,
+                        width: 24 * h,
+                      ),
+                      const Spacer(),
+                      Center(
+                        child: Text(
+                          "Login with facebook",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 25 / 14 * h,
+                            letterSpacing: 0.5 * w,
+                            color: AppColor.grey,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                        width: 30 * w,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 16 * h,
+                ),
+                Center(
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12 * h,
+                      fontFamily: AppColor.fontFamilyPoppins,
+                      height: 18 / 12 * h,
+                      letterSpacing: 0.5 * w,
+                      color: AppColor.blue,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 8 * h,
+                ),
+                Row(
+                  children: [
+                    const Spacer(),
+                    Text(
+                      "Don’t have a account? ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12 * h,
+                        fontFamily: AppColor.fontFamilyPoppins,
+                        height: 18 / 12 * h,
+                        letterSpacing: 0.5 * w,
+                        color: AppColor.grey,
+                      ),
+                    ),
+                    Text(
+                      "Register",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12 * h,
+                        fontFamily: AppColor.fontFamilyPoppins,
+                        height: 18 / 12 * h,
+                        letterSpacing: 0.5 * w,
+                        color: AppColor.blue,
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
                 ),
               ],
             ),
