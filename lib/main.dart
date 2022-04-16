@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'src/ui/auth/login_screen.dart';
 import 'src/ui/menu/main_screen.dart';
 
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
         primarySwatch: Colors.blue,
       ),
-      home: const MainScreen(),
+      home: const LoginScreen(),
     );
   }
 }

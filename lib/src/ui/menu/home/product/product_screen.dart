@@ -848,7 +848,8 @@ class _ProductScreenState extends State<ProductScreen> {
                               height: 56 * h,
                               width: 56 * h,
                               margin: EdgeInsets.only(
-                                top: 8 * h,
+                                left: 16 * w,
+                                bottom: 16 * h,
                               ),
                               child: Center(
                                 child: Text(
@@ -891,7 +892,8 @@ class _ProductScreenState extends State<ProductScreen> {
                               height: 56 * h,
                               width: 56 * h,
                               margin: EdgeInsets.only(
-                                top: 8 * h,
+                                right: 16 * w,
+                                bottom: 16 * h,
                               ),
                               child: Center(
                                 child: Text(

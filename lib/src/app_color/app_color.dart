@@ -13,6 +13,7 @@ class AppColor {
   static const Color gray = Color(0xFFEBF0FF);
   static const Color yellow = Color(0xFFFFC833);
   static const Color red = Color(0xFFFB7181);
+  static const Color neutralLight = Color(0xFFEBF0FF);
 
   ///shimmer
   static const Color shimmerBaseColor = Color(0xE0E0E0FF);
