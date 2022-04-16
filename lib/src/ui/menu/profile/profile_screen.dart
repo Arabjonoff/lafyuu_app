@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 
@@ -34,9 +35,141 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: ListView(
         children: [
-          Container(
-            height: 56*h,
-            width: MediaQuery.of(context).size.width,
+          GestureDetector(
+            onTap: () {},
+            child: SizedBox(
+              height: 56 * h,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  SvgPicture.asset(
+                    "assets/icons/user.svg",
+                    height: 24 * h,
+                    width: 24 * h,
+                    color: AppColor.blue,
+                  ),
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  Text(
+                    "Profile",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12 * h,
+                      fontFamily: AppColor.fontFamilyPoppins,
+                      height: 18 / 12 * h,
+                      letterSpacing: 0.5 * w,
+                      color: AppColor.dark,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: SizedBox(
+              height: 56 * h,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  SvgPicture.asset(
+                    "assets/icons/bag.svg",
+                    height: 24 * h,
+                    width: 24 * h,
+                    color: AppColor.blue,
+                  ),
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  Text(
+                    "Order",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12 * h,
+                      fontFamily: AppColor.fontFamilyPoppins,
+                      height: 18 / 12 * h,
+                      letterSpacing: 0.5 * w,
+                      color: AppColor.dark,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: SizedBox(
+              height: 56 * h,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  SvgPicture.asset(
+                    "assets/icons/location.svg",
+                    height: 24 * h,
+                    width: 24 * h,
+                    color: AppColor.blue,
+                  ),
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  Text(
+                    "Address",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12 * h,
+                      fontFamily: AppColor.fontFamilyPoppins,
+                      height: 18 / 12 * h,
+                      letterSpacing: 0.5 * w,
+                      color: AppColor.dark,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: SizedBox(
+              height: 56 * h,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  SvgPicture.asset(
+                    "assets/icons/card.svg",
+                    height: 24 * h,
+                    width: 24 * h,
+                    color: AppColor.blue,
+                  ),
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  Text(
+                    "Payment",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12 * h,
+                      fontFamily: AppColor.fontFamilyPoppins,
+                      height: 18 / 12 * h,
+                      letterSpacing: 0.5 * w,
+                      color: AppColor.dark,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
