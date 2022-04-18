@@ -40,63 +40,65 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
       ),
       body: ListView(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(
-              top: 25 * h,
-            ),
-            child: Row(
-              children: [
-                Container(
-                  height: 72 * h,
-                  width: 72 * h,
-                  margin: EdgeInsets.only(
-                    left: 16 * w,
-                  ),
-                  color: Colors.transparent,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(36),
-                    child: Image.asset(
-                      "assets/images/profile_png.png",
-                      height: 72 * h,
-                      width: 72 * h,
+          GestureDetector(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(
+                top: 25 * h,
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 72 * h,
+                    width: 72 * h,
+                    margin: EdgeInsets.only(
+                      left: 16 * w,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: 16 * w,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Maximus Gold",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14 * h,
-                        fontFamily: AppColor.fontFamilyPoppins,
-                        height: 21 / 14 * h,
-                        letterSpacing: 0.5 * w,
-                        color: AppColor.dark,
+                    color: Colors.transparent,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(36),
+                      child: Image.asset(
+                        "assets/images/profile_png.png",
+                        height: 72 * h,
+                        width: 72 * h,
                       ),
                     ),
-                    SizedBox(
-                      height: 4 * h,
-                    ),
-                    Text(
-                      "@derlaxy",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12 * h,
-                        fontFamily: AppColor.fontFamilyPoppins,
-                        height: 22 / 12 * h,
-                        letterSpacing: 0.5 * w,
-                        color: AppColor.grey,
+                  ),
+                  SizedBox(
+                    width: 16 * w,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Maximus Gold",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14 * h,
+                          fontFamily: AppColor.fontFamilyPoppins,
+                          height: 21 / 14 * h,
+                          letterSpacing: 0.5 * w,
+                          color: AppColor.dark,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      SizedBox(
+                        height: 4 * h,
+                      ),
+                      Text(
+                        "@derlaxy",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12 * h,
+                          fontFamily: AppColor.fontFamilyPoppins,
+                          height: 22 / 12 * h,
+                          letterSpacing: 0.5 * w,
+                          color: AppColor.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

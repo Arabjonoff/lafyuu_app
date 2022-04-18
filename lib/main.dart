@@ -5,6 +5,7 @@ import 'package:lafyuu/src/ui/menu/profile/profile_item_screen.dart';
 
 import 'src/ui/auth/login_screen.dart';
 import 'src/ui/menu/main_screen.dart';
+import 'src/ui/menu/profile/name_edit_screen.dart';
 
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
         primarySwatch: Colors.blue,
       ),
-      home: const ProfileItemScreen(),
+      home: const NameEditScreen(),
     );
   }
 }
