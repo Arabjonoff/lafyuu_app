@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
         primarySwatch: Colors.blue,
       ),
-      home: const NameEditScreen(),
+      home:  NameEditScreen(),
     );
   }
 }
