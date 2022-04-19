@@ -4,10 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
-import 'package:lafyuu/src/widget/profile/calendar_widget.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class BirthdayScreen extends StatefulWidget {
-  const BirthdayScreen({Key? key}) : super(key: key);
+  final DateTime dateTime;
+
+  const BirthdayScreen({
+    Key? key,
+    required this.dateTime,
+  }) : super(key: key);
 
   @override
   _BirthdayScreenState createState() => _BirthdayScreenState();
@@ -15,6 +20,7 @@ class BirthdayScreen extends StatefulWidget {
 
 class _BirthdayScreenState extends State<BirthdayScreen> {
   bool isSelected = false;
+  DateTime time = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +98,11 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                       children: [
                         Expanded(
                           child: Text(
-                            "hdjjh",
+                            Utils.numberFormat(time.day) +
+                                "/" +
+                                Utils.numberFormat(time.month) +
+                                "/" +
+                                Utils.numberFormat(time.year),
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 12 * h,
@@ -113,8 +123,88 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                     ),
                   ),
                 ),
-
-                isSelected ? const CalendarWidget() : Container(),
+                isSelected
+                    ? TableCalendar(
+                        firstDay: DateTime(1980, 02, 05),
+                        lastDay: DateTime(2030, 05, 07),
+                        focusedDay: time,
+                        selectedDayPredicate: (day) {
+                          return isSameDay(time, day);
+                        },
+                        onDaySelected: (selectedDay, focusedDay) {
+                          setState(() {
+                            time = selectedDay;
+                          });
+                        },
+                        headerVisible: true,
+                        daysOfWeekVisible: true,
+                        sixWeekMonthsEnforced: false,
+                        shouldFillViewport: false,
+                        headerStyle: HeaderStyle(
+                          titleTextStyle: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 21 / 14 * h,
+                            letterSpacing: 0.5 * w,
+                            color: AppColor.dark,
+                          ),
+                          formatButtonShowsNext: false,
+                          formatButtonVisible: false,
+                          titleCentered: true,
+                        ),
+                        calendarStyle: CalendarStyle(
+                          selectedTextStyle: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 18 / 12 * h,
+                            letterSpacing: 0.5 * w,
+                            color: AppColor.white,
+                          ),
+                          todayTextStyle: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 18 / 12 * h,
+                            letterSpacing: 0.5 * w,
+                            color: AppColor.dark,
+                          ),
+                          isTodayHighlighted: true,
+                          holidayTextStyle: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 18 / 12 * h,
+                            letterSpacing: 0.5 * w,
+                          ),
+                          defaultTextStyle: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 18 / 12 * h,
+                            letterSpacing: 0.5 * w,
+                            color: AppColor.grey,
+                          ),
+                          weekendTextStyle: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12 * h,
+                            fontFamily: AppColor.fontFamilyPoppins,
+                            height: 18 / 12 * h,
+                            letterSpacing: 0.5 * w,
+                            color: AppColor.grey,
+                          ),
+                          selectedDecoration: const BoxDecoration(
+                            color: AppColor.blue,
+                          ),
+                          todayDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(color: Colors.red),
+                          ),
+                        ),
+                      )
+                    : Container(),
               ],
             ),
           ),

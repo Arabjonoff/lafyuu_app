@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lafyuu/src/ui/menu/profile/birthday_screen.dart';
 import 'package:lafyuu/src/ui/menu/profile/gender_screen.dart';
+import 'package:lafyuu/src/ui/menu/profile/profile_screen.dart';
 
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
         primarySwatch: Colors.blue,
       ),
-      home:  BirthdayScreen(),
+      home: ProfileScreen(),
     );
   }
 }

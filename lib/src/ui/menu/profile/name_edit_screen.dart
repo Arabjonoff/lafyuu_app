@@ -15,19 +15,17 @@ class NameEditScreen extends StatefulWidget {
 
 class _NameEditScreenState extends State<NameEditScreen> {
   final TextEditingController _controllerFirstName =
-  TextEditingController(text: "");
+      TextEditingController(text: "");
   final TextEditingController _controllerLastName =
-  TextEditingController(text: "");
+      TextEditingController(text: "");
 
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
-    double we = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double we = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
@@ -74,6 +72,9 @@ class _NameEditScreenState extends State<NameEditScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
+                    setState(() {
+                      isSelected = !isSelected;
+                    });
                   },
                   child: Container(
                     height: 56 * h,
@@ -83,19 +84,17 @@ class _NameEditScreenState extends State<NameEditScreen> {
                       left: 16 * w,
                       right: 16 * w,
                     ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16 * w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: AppColor.neutralLight,
-                      ),
-                    ),
                     child: TextField(
                       controller: _controllerFirstName,
                       decoration: const InputDecoration(
-                        border: InputBorder.none,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColor.blue,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColor.neutralLight),
+                        ),
                       ),
                       style: TextStyle(
                         fontWeight: FontWeight.w700,

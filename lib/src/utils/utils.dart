@@ -9,8 +9,15 @@ class Utils {
     return MediaQuery.of(context).size.width / 375;
   }
 
-  static String getDateFormat(DateTime dateTime) {
+  static String numberFormat(int k) {
+    if (k > 9) {
+      return k.toString();
+    } else {
+      return "0" + k.toString();
+    }
+  }
 
+  static String getDateFormat(DateTime dateTime) {
     return numberFormat(dateTime.day) +
         "." +
         numberFormat(dateTime.month) +
@@ -20,14 +27,6 @@ class Utils {
         numberFormat(dateTime.hour) +
         ":" +
         numberFormat(dateTime.minute);
-  }
-
-  static String numberFormat(int n) {
-    if (n < 10) {
-      return "0" + n.toString();
-    } else {
-      return n.toString();
-    }
   }
 
   static String monthFormat(int n) {

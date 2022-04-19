@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
+import 'package:lafyuu/src/ui/menu/profile/birthday_screen.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  DateTime time = DateTime.now();
   @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
@@ -70,7 +72,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return BirthdayScreen(dateTime: time);
+              }),);
+            },
             child: SizedBox(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
