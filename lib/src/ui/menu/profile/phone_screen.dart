@@ -1,34 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
 
-class NameEditScreen extends StatefulWidget {
-  final String firstName;
-  final String lastName;
-  final Function(String _firstName, String lastName) save;
+class PhoneScreen extends StatefulWidget {
+  final Function(
+    String _phone,
+  ) save;
 
-  const NameEditScreen({
+  const PhoneScreen({
     Key? key,
-    required this.firstName,
-    required this.lastName,
     required this.save,
   }) : super(key: key);
 
   @override
-  _NameEditScreenState createState() => _NameEditScreenState();
+  State<PhoneScreen> createState() => _PhoneScreenState();
 }
 
-class _NameEditScreenState extends State<NameEditScreen> {
-  final TextEditingController _controllerFirstName = TextEditingController();
-  final TextEditingController _controllerLastName = TextEditingController();
-
-  @override
-  void initState() {
-    _controllerFirstName.text = widget.firstName;
-    _controllerLastName.text = widget.lastName;
-    super.initState();
-  }
+class _PhoneScreenState extends State<PhoneScreen> {
+  final TextEditingController _controllerPhone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +35,7 @@ class _NameEditScreenState extends State<NameEditScreen> {
         leading: const LeadingWidget(),
         centerTitle: false,
         title: Text(
-          "Name",
+          "Phone Number",
           textAlign: TextAlign.start,
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -88,57 +79,11 @@ class _NameEditScreenState extends State<NameEditScreen> {
                     right: 16 * w,
                   ),
                   child: TextField(
-                    controller: _controllerFirstName,
-                    decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColor.blue,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppColor.neutralLight),
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12 * h,
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      height: 22 / 12 * h,
-                      letterSpacing: 0.5 * w,
-                      color: AppColor.grey,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 24 * h,
-                    left: 16 * w,
-                  ),
-                  child: Text(
-                    "Last Name",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14 * h,
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      height: 21 / 14 * h,
-                      letterSpacing: 0.5 * w,
-                      color: AppColor.dark,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 56 * h,
-                  width: we,
-                  margin: EdgeInsets.only(
-                    top: 12 * h,
-                    left: 16 * w,
-                    right: 16 * w,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: TextField(
-                    controller: _controllerLastName,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    controller: _controllerPhone,
                     decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -164,10 +109,10 @@ class _NameEditScreenState extends State<NameEditScreen> {
           ),
           GestureDetector(
             onTap: () {
-              if (_controllerFirstName.text.length > 1 &&
-                  _controllerLastName.text.length > 1) {
+              if (_controllerPhone.text.length == 9) {
                 widget.save(
-                    _controllerFirstName.text, _controllerLastName.text);
+                  _controllerPhone.text,
+                );
               }
               Navigator.pop(context);
             },

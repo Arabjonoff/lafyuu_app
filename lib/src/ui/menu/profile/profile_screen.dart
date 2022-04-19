@@ -12,7 +12,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  DateTime time = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
@@ -72,11 +72,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return BirthdayScreen(dateTime: time);
-              }),);
-            },
             child: SizedBox(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,

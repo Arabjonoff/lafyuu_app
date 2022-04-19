@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
@@ -8,10 +7,12 @@ import 'package:table_calendar/table_calendar.dart';
 
 class BirthdayScreen extends StatefulWidget {
   final DateTime dateTime;
+  final Function(DateTime _choose) save;
 
   const BirthdayScreen({
     Key? key,
     required this.dateTime,
+    required this.save,
   }) : super(key: key);
 
   @override
@@ -21,6 +22,12 @@ class BirthdayScreen extends StatefulWidget {
 class _BirthdayScreenState extends State<BirthdayScreen> {
   bool isSelected = false;
   DateTime time = DateTime.now();
+
+  @override
+  void initState() {
+    time = widget.dateTime;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,8 +132,8 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                 ),
                 isSelected
                     ? TableCalendar(
-                        firstDay: DateTime(1980, 02, 05),
-                        lastDay: DateTime(2030, 05, 07),
+                        firstDay: DateTime(1900, 02, 16),
+                        lastDay: DateTime.now(),
                         focusedDay: time,
                         selectedDayPredicate: (day) {
                           return isSameDay(time, day);
@@ -208,38 +215,44 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
               ],
             ),
           ),
-          Container(
-            height: 57 * h,
-            width: we,
-            margin: EdgeInsets.only(
-              left: 16 * w,
-              right: 16 * w,
-              bottom: 16 * h,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: AppColor.blue,
-              boxShadow: [
-                BoxShadow(
-                  offset: const Offset(
-                    0,
-                    10,
+          GestureDetector(
+            onTap: () {
+              widget.save(time);
+              Navigator.pop(context);
+            },
+            child: Container(
+              height: 57 * h,
+              width: we,
+              margin: EdgeInsets.only(
+                left: 16 * w,
+                right: 16 * w,
+                bottom: 16 * h,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: AppColor.blue,
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(
+                      0,
+                      10,
+                    ),
+                    blurRadius: 30,
+                    color: AppColor.blue.withOpacity(0.24),
                   ),
-                  blurRadius: 30,
-                  color: AppColor.blue.withOpacity(0.24),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                "Save",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14 * h,
-                  fontFamily: AppColor.fontFamilyPoppins,
-                  height: 25 / 14 * h,
-                  letterSpacing: 0.5 * w,
-                  color: AppColor.white,
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  "Save",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14 * h,
+                    fontFamily: AppColor.fontFamilyPoppins,
+                    height: 25 / 14 * h,
+                    letterSpacing: 0.5 * w,
+                    color: AppColor.white,
+                  ),
                 ),
               ),
             ),

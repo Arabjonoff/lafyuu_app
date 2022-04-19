@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
+import 'package:lafyuu/src/ui/menu/profile/birthday_screen.dart';
+import 'package:lafyuu/src/ui/menu/profile/gender_screen.dart';
+import 'package:lafyuu/src/ui/menu/profile/name_edit_screen.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
 
@@ -12,6 +15,10 @@ class ProfileItemScreen extends StatefulWidget {
 }
 
 class _ProfileItemScreenState extends State<ProfileItemScreen> {
+  DateTime birthday = DateTime.now();
+  String firstName = "Diyorbek";
+  String lastName = "Jumaniyozov";
+
   @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
@@ -40,69 +47,120 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
       ),
       body: ListView(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(top: 25*h,),
-            color: Colors.transparent,
-            child: Row(
-              children: [
-                Container(
-                  height: 72 * h,
-                  width: 72 * h,
-                  margin: EdgeInsets.only(
-                    left: 16 * w,
-                  ),
-                  color: Colors.transparent,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(36),
-                    child: Image.asset(
-                      "assets/images/profile_png.png",
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return NameEditScreen(
+                    firstName: firstName,
+                    lastName: lastName,
+                    save: (String _choose, _lastName) {
+                      setState(() {
+                        firstName = _choose;
+                        lastName = _lastName;
+                      });
+                    },
+                  );
+                }),
+              );
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(
+                top: 25 * h,
+              ),
+              padding: EdgeInsets.only(
+                right: 16 * w,
+              ),
+              color: Colors.transparent,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
                       height: 72 * h,
                       width: 72 * h,
+                      margin: EdgeInsets.only(
+                        left: 16 * w,
+                        right: 16*w,
+                      ),
+                      color: Colors.transparent,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(36),
+                          child: Image.asset(
+                            "assets/images/profile_png.png",
+                            height: 72 * h,
+                            width: 72 * h,
+                          ),
+                        ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 16 * w,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Maximus Gold",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14 * h,
-                        fontFamily: AppColor.fontFamilyPoppins,
-                        height: 21 / 14 * h,
-                        letterSpacing: 0.5 * w,
-                        color: AppColor.dark,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            firstName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14 * h,
+                              fontFamily: AppColor.fontFamilyPoppins,
+                              height: 21 / 14 * h,
+                              letterSpacing: 0.5 * w,
+                              color: AppColor.dark,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(
+                            width: 2 * w,
+                          ),
+                          Text(
+                            lastName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14 * h,
+                              fontFamily: AppColor.fontFamilyPoppins,
+                              height: 21 / 14 * h,
+                              letterSpacing: 0.5 * w,
+                              color: AppColor.dark,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 4 * h,
-                    ),
-                    Text(
-                      "@derlaxy",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12 * h,
-                        fontFamily: AppColor.fontFamilyPoppins,
-                        height: 22 / 12 * h,
-                        letterSpacing: 0.5 * w,
-                        color: AppColor.grey,
+                      SizedBox(
+                        height: 4 * h,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      Text(
+                        "@derlaxy",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12 * h,
+                          fontFamily: AppColor.fontFamilyPoppins,
+                          height: 22 / 12 * h,
+                          letterSpacing: 0.5 * w,
+                          color: AppColor.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(
             height: 32 * h,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return GenderScreen();
+                }),
+              );
+            },
             child: SizedBox(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
@@ -160,7 +218,21 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return BirthdayScreen(
+                    dateTime: birthday,
+                    save: (DateTime _choose) {
+                      setState(() {
+                        birthday = _choose;
+                      });
+                    },
+                  );
+                }),
+              );
+            },
             child: SizedBox(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
@@ -192,7 +264,11 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
                     ),
                   ),
                   Text(
-                    "12-12-2000",
+                    Utils.numberFormat(birthday.day) +
+                        "/" +
+                        Utils.numberFormat(birthday.month) +
+                        "/" +
+                        Utils.numberFormat(birthday.year),
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 12 * h,
