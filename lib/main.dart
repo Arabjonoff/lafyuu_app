@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lafyuu/src/ui/auth/register_form.dart';
-import 'package:lafyuu/src/ui/menu/profile/profile_item_screen.dart';
-
-import 'src/ui/auth/login_screen.dart';
-import 'src/ui/menu/main_screen.dart';
-import 'src/ui/menu/profile/name_edit_screen.dart';
+import 'package:lafyuu/src/ui/menu/profile/birthday_screen.dart';
+import 'package:lafyuu/src/ui/menu/profile/gender_screen.dart';
 
 
 void main() {
@@ -25,7 +21,7 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
         primarySwatch: Colors.blue,
       ),
-      home:  NameEditScreen(),
+      home:  BirthdayScreen(),
     );
   }
 }

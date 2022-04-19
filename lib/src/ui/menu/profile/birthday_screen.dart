@@ -1,33 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
+import 'package:lafyuu/src/widget/profile/calendar_widget.dart';
 
-class NameEditScreen extends StatefulWidget {
-  const NameEditScreen({
-    Key? key,
-  }) : super(key: key);
+class BirthdayScreen extends StatefulWidget {
+  const BirthdayScreen({Key? key}) : super(key: key);
 
   @override
-  _NameEditScreenState createState() => _NameEditScreenState();
+  _BirthdayScreenState createState() => _BirthdayScreenState();
 }
 
-class _NameEditScreenState extends State<NameEditScreen> {
-  final TextEditingController _controllerFirstName =
-  TextEditingController(text: "");
-  final TextEditingController _controllerLastName =
-  TextEditingController(text: "");
-
+class _BirthdayScreenState extends State<BirthdayScreen> {
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
-    double we = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double we = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
@@ -37,7 +30,7 @@ class _NameEditScreenState extends State<NameEditScreen> {
         leading: const LeadingWidget(),
         centerTitle: false,
         title: Text(
-          "Name",
+          "Birthday",
           textAlign: TextAlign.start,
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -61,7 +54,7 @@ class _NameEditScreenState extends State<NameEditScreen> {
                     left: 16 * w,
                   ),
                   child: Text(
-                    "First Name",
+                    "Your Birhday",
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14 * h,
@@ -74,6 +67,9 @@ class _NameEditScreenState extends State<NameEditScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
+                    setState(() {
+                      isSelected = !isSelected;
+                    });
                   },
                   child: Container(
                     height: 56 * h,
@@ -87,76 +83,38 @@ class _NameEditScreenState extends State<NameEditScreen> {
                       horizontal: 16 * w,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: AppColor.neutralLight,
-                      ),
-                    ),
-                    child: TextField(
-                      controller: _controllerFirstName,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12 * h,
-                        fontFamily: AppColor.fontFamilyPoppins,
-                        height: 22 / 12 * h,
-                        letterSpacing: 0.5 * w,
-                        color: AppColor.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 24 * h,
-                    left: 16 * w,
-                  ),
-                  child: Text(
-                    "Last Name",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14 * h,
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      height: 21 / 14 * h,
-                      letterSpacing: 0.5 * w,
-                      color: AppColor.dark,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: AppColor.neutralLight,
+                        ),
+                        color: Colors.transparent),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "hdjjh",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12 * h,
+                              fontFamily: AppColor.fontFamilyPoppins,
+                              height: 22 / 12 * h,
+                              letterSpacing: 0.5 * w,
+                              color: AppColor.grey,
+                            ),
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          "assets/icons/date.svg",
+                          height: 24 * h,
+                          width: 24 * h,
+                          color: AppColor.grey,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                Container(
-                  height: 56 * h,
-                  width: we,
-                  margin: EdgeInsets.only(
-                    top: 12 * h,
-                    left: 16 * w,
-                    right: 16 * w,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16 * w,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: AppColor.neutralLight,
-                    ),
-                  ),
-                  child: TextField(
-                    controller: _controllerLastName,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12 * h,
-                      fontFamily: AppColor.fontFamilyPoppins,
-                      height: 22 / 12 * h,
-                      letterSpacing: 0.5 * w,
-                      color: AppColor.grey,
-                    ),
-                  ),
-                ),
+
+                isSelected ? const CalendarWidget() : Container(),
               ],
             ),
           ),

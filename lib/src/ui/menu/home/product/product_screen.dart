@@ -235,23 +235,13 @@ class _ProductScreenState extends State<ProductScreen> {
                                             child: Center(
                                               child: GestureDetector(
                                                 onTap: () {
-                                                  if (productItemData
-                                                          .size[index]
-                                                          .selected ==
-                                                      index) {
-                                                    productItemData.size[index]
-                                                        .selected = -1;
+                                                  if (productItemData.size[index].selected == index) {
+                                                    productItemData.size[index].selected = -1;
                                                   } else {
-                                                    for (int i = 0;
-                                                        i <
-                                                            productItemData
-                                                                .size.length;
-                                                        i++) {
-                                                      productItemData.size[i]
-                                                          .selected = -1;
+                                                    for (int i = 0; i < productItemData.size.length; i++) {
+                                                      productItemData.size[i].selected = -1;
                                                     }
-                                                    productItemData.size[index]
-                                                        .selected = index;
+                                                    productItemData.size[index].selected = index;
                                                   }
                                                   setState(() {});
                                                 },
@@ -263,10 +253,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                         BorderRadius.circular(
                                                             24),
                                                     border: Border.all(
-                                                      color: index ==
-                                                              productItemData
-                                                                  .size[index]
-                                                                  .selected
+                                                      color: index == productItemData.size[index].selected
                                                           ? AppColor.blue
                                                           : AppColor.gray,
                                                     ),
