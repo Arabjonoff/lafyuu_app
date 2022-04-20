@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
 
 class PhoneScreen extends StatefulWidget {
-  final Function(
-    String _phone,
-  ) save;
+  final String number;
+  final Function(String _phone) save;
 
   const PhoneScreen({
     Key? key,
     required this.save,
+    required this.number,
   }) : super(key: key);
 
   @override
@@ -20,6 +21,12 @@ class PhoneScreen extends StatefulWidget {
 
 class _PhoneScreenState extends State<PhoneScreen> {
   final TextEditingController _controllerPhone = TextEditingController();
+
+  @override
+  void initState() {
+    _controllerPhone.text = widget.number;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +66,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                     left: 16 * w,
                   ),
                   child: Text(
-                    "First Name",
+                    "Phone Number",
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14 * h,
@@ -84,14 +91,31 @@ class _PhoneScreenState extends State<PhoneScreen> {
                       FilteringTextInputFormatter.digitsOnly,
                     ],
                     controller: _controllerPhone,
-                    decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
+                    decoration: InputDecoration(
+                      counterText: "",
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                           color: AppColor.blue,
                         ),
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: AppColor.neutralLight),
+                      ),
+                      prefixIcon: const Align(
+                        widthFactor: 0,
+                        heightFactor: 0,
+                        child: Icon(
+                          Icons.phone_android,
+                        ),
+                      ),
+                      prefixText: "+998",
+                      prefixStyle: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12 * h,
+                        fontFamily: AppColor.fontFamilyPoppins,
+                        height: 22 / 12 * h,
+                        letterSpacing: 0.5 * w,
+                        color: AppColor.grey,
                       ),
                     ),
                     style: TextStyle(
@@ -102,6 +126,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                       letterSpacing: 0.5 * w,
                       color: AppColor.grey,
                     ),
+                    maxLength: 9,
                   ),
                 ),
               ],

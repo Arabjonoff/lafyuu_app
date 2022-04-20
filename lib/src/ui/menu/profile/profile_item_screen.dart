@@ -4,6 +4,7 @@ import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/ui/menu/profile/birthday_screen.dart';
 import 'package:lafyuu/src/ui/menu/profile/gender_screen.dart';
 import 'package:lafyuu/src/ui/menu/profile/name_edit_screen.dart';
+import 'package:lafyuu/src/ui/menu/profile/phone_screen.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
 
@@ -18,6 +19,7 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
   DateTime birthday = DateTime.now();
   String firstName = "Diyorbek";
   String lastName = "Jumaniyozov";
+  String phoneNumber = "";
 
   @override
   Widget build(BuildContext context) {
@@ -82,17 +84,17 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
                       width: 72 * h,
                       margin: EdgeInsets.only(
                         left: 16 * w,
-                        right: 16*w,
+                        right: 16 * w,
                       ),
                       color: Colors.transparent,
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(36),
-                          child: Image.asset(
-                            "assets/images/profile_png.png",
-                            height: 72 * h,
-                            width: 72 * h,
-                          ),
+                        borderRadius: BorderRadius.circular(36),
+                        child: Image.asset(
+                          "assets/images/profile_png.png",
+                          height: 72 * h,
+                          width: 72 * h,
                         ),
+                      ),
                     ),
                   ),
                   Column(
@@ -352,7 +354,20 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return PhoneScreen(
+                      save: (_phone) {
+                        setState(() {
+                          phoneNumber = _phone;
+                        });
+                      },
+                      number: phoneNumber);
+                }),
+              );
+            },
             child: SizedBox(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
@@ -384,7 +399,7 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
                     ),
                   ),
                   Text(
-                    "(307) 555-0133",
+                    phoneNumber,
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 12 * h,
