@@ -3,14 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PhoneScreen extends StatefulWidget {
   final String number;
-  final Function(String _phone) save;
 
   const PhoneScreen({
     Key? key,
-    required this.save,
     required this.number,
   }) : super(key: key);
 
@@ -20,10 +19,15 @@ class PhoneScreen extends StatefulWidget {
 
 class _PhoneScreenState extends State<PhoneScreen> {
   final TextEditingController _controllerPhone = TextEditingController();
+  var maskFormatter = MaskTextInputFormatter(
+      mask: '(##) ###-##-##',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy,
+  );
+
 
   @override
   void initState() {
-    _controllerPhone.text = widget.number;
     super.initState();
   }
 
@@ -85,10 +89,9 @@ class _PhoneScreenState extends State<PhoneScreen> {
                     right: 16 * w,
                   ),
                   child: TextField(
+                    autofocus: true,
                     keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
+                    inputFormatters: [maskFormatter],
                     controller: _controllerPhone,
                     decoration: InputDecoration(
                       counterText: "",
@@ -125,7 +128,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                       letterSpacing: 0.5 * w,
                       color: AppColor.grey,
                     ),
-                    maxLength: 9,
+                    maxLength: 14,
                   ),
                 ),
               ],
@@ -133,11 +136,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
           ),
           GestureDetector(
             onTap: () {
-              if (_controllerPhone.text.length == 9) {
-                widget.save(
-                  _controllerPhone.text,
-                );
-              }
+
               Navigator.pop(context);
             },
             child: Container(

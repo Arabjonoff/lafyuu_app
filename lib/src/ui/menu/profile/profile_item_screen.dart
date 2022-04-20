@@ -163,9 +163,10 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
                 }),
               );
             },
-            child: SizedBox(
+            child: Container(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
+              color: Colors.transparent,
               child: Row(
                 children: [
                   SizedBox(
@@ -297,9 +298,10 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
           ),
           GestureDetector(
             onTap: () {},
-            child: SizedBox(
+            child: Container(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
+              color: Colors.transparent,
               child: Row(
                 children: [
                   SizedBox(
@@ -359,18 +361,15 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
                 context,
                 MaterialPageRoute(builder: (context) {
                   return PhoneScreen(
-                      save: (_phone) {
-                        setState(() {
-                          phoneNumber = _phone;
-                        });
-                      },
-                      number: phoneNumber);
+                    number: phoneNumber,
+                  );
                 }),
               );
             },
-            child: SizedBox(
+            child: Container(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
+              color: Colors.transparent,
               child: Row(
                 children: [
                   SizedBox(
@@ -426,9 +425,10 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
           ),
           GestureDetector(
             onTap: () {},
-            child: SizedBox(
+            child: Container(
               height: 56 * h,
               width: MediaQuery.of(context).size.width,
+              color: Colors.transparent,
               child: Row(
                 children: [
                   SizedBox(
