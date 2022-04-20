@@ -362,6 +362,11 @@ class _ProfileItemScreenState extends State<ProfileItemScreen> {
                 MaterialPageRoute(builder: (context) {
                   return PhoneScreen(
                     number: phoneNumber,
+                    save: (String _phoneNumber) {
+                      setState(() {
+                        phoneNumber = _phoneNumber;
+                      });
+                    },
                   );
                 }),
               );

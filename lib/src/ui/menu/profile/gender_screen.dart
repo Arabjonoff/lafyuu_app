@@ -6,7 +6,12 @@ import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
 
 class GenderScreen extends StatefulWidget {
-  const GenderScreen({Key? key}) : super(key: key);
+  // final Function(String _gender) save;
+
+  const GenderScreen({
+    Key? key,
+    // required this.save,
+  }) : super(key: key);
 
   @override
   _GenderScreenState createState() => _GenderScreenState();
@@ -19,6 +24,11 @@ class _GenderScreenState extends State<GenderScreen> {
     'Female',
     'Other',
   ];
+  @override
+  void initState() {
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +92,7 @@ class _GenderScreenState extends State<GenderScreen> {
                       isExpanded: true,
                       hint: Row(
                         children: [
-                           Expanded(
+                          Expanded(
                             child: Text(
                               'Male',
                               style: TextStyle(
@@ -150,38 +160,40 @@ class _GenderScreenState extends State<GenderScreen> {
               ],
             ),
           ),
-          Container(
-            height: 57 * h,
-            width: we,
-            margin: EdgeInsets.only(
-              left: 16 * w,
-              right: 16 * w,
-              bottom: 16 * h,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: AppColor.blue,
-              boxShadow: [
-                BoxShadow(
-                  offset: const Offset(
-                    0,
-                    10,
+          GestureDetector(
+            child: Container(
+              height: 57 * h,
+              width: we,
+              margin: EdgeInsets.only(
+                left: 16 * w,
+                right: 16 * w,
+                bottom: 16 * h,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: AppColor.blue,
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(
+                      0,
+                      10,
+                    ),
+                    blurRadius: 30,
+                    color: AppColor.blue.withOpacity(0.24),
                   ),
-                  blurRadius: 30,
-                  color: AppColor.blue.withOpacity(0.24),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                "Save",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14 * h,
-                  fontFamily: AppColor.fontFamilyPoppins,
-                  height: 25 / 14 * h,
-                  letterSpacing: 0.5 * w,
-                  color: AppColor.white,
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  "Save",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14 * h,
+                    fontFamily: AppColor.fontFamilyPoppins,
+                    height: 25 / 14 * h,
+                    letterSpacing: 0.5 * w,
+                    color: AppColor.white,
+                  ),
                 ),
               ),
             ),

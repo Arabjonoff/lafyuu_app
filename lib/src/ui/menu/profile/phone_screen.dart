@@ -6,10 +6,12 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PhoneScreen extends StatefulWidget {
   final String number;
+  final Function(String _phoneNumber) save;
 
   const PhoneScreen({
     Key? key,
     required this.number,
+    required this.save,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
 
   @override
   void initState() {
+    _controllerPhone.text = widget.number;
     super.initState();
   }
 
@@ -134,6 +137,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
           ),
           GestureDetector(
             onTap: () {
+              widget.save(_controllerPhone.text);
               Navigator.pop(context);
             },
             child: Container(
