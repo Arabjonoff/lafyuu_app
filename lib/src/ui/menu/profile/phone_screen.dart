@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:lafyuu/src/app_color/app_color.dart';
 import 'package:lafyuu/src/utils/utils.dart';
 import 'package:lafyuu/src/widget/all_category/app_bar_widget/leading_widget.dart';
@@ -20,11 +19,10 @@ class PhoneScreen extends StatefulWidget {
 class _PhoneScreenState extends State<PhoneScreen> {
   final TextEditingController _controllerPhone = TextEditingController();
   var maskFormatter = MaskTextInputFormatter(
-      mask: '(##) ###-##-##',
-      filter: { "#": RegExp(r'[0-9]') },
-      type: MaskAutoCompletionType.lazy,
+    mask: '(##) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
   );
-
 
   @override
   void initState() {
@@ -136,7 +134,6 @@ class _PhoneScreenState extends State<PhoneScreen> {
           ),
           GestureDetector(
             onTap: () {
-
               Navigator.pop(context);
             },
             child: Container(
